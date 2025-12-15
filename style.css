@@ -1,68 +1,113 @@
-		*{
- margin : 100;
- padding: 100;
- box-sizing: border-box;
-}
 
 @font-face {
-  font-family: 'DegonprincessClassic'; 
-  src: url(DeogonPrincessClassic.woff);
+    font-family: 'DegonprincessClassic'; 
+    src: url(DeogonPrincessClassic.woff);
 }
 
 body {
-    margin: 0px;
-    margin-top: 50px;
+    margin-top: 20px;
     background-color: rgb(146, 165, 159);
 }
 
 h1 {
     font-family: 'DegonprincessClassic';
-    font-size: pt;
-    color: ;
-    text-align: ;
 }
 
 h2 {
     font-family: 'DegonprincessClassic';
-    font-size: pt;
-    color: ;
-    text-align: ;
+    font-size: 50px;
 }
 
 a {
     text-decoration-line: none;
+    color: inherit; /* 링크 색상 기본값 상속 */
 }
 
-p {
-    line-height: ;
-    word-break: ;
-}
-
-img {
+/* [중요 수정] 
+   원래 img { ... } 라고 되어있던 것을 .main-img 로 바꿨습니다.
+   모든 이미지(로딩바 비디오 등)가 다 저 위치로 가는 걸 막기 위함입니다.
+   HTML에서 해당 이미지에 class="main-img"를 추가해주셔야 합니다.
+*/
+.main-img {
     position: absolute;
     width: 300px;
-    height: px;
     left: 1000px;
     top: 100px;
 }
 
-
-div {
+/* [가장 중요 수정]
+   원래 div { ... } 라고 되어있던 부분을 지우거나 특정 클래스로 바꿨습니다.
+   이게 있으면 로딩바가 망가집니다. 
+   만약 저 위치에 네모가 필요하다면 HTML에 <div class="box">라고 쓰고
+   아래처럼 .box { ... } 로 바꿔주세요.
+*/
+/*.box {
     position: absolute;
     width: 100px;
     height: 100px;
     left: 10px;
     top: 100px;
-    background-color: ;
+    /* background-color: red; (색이 없어서 임시로 넣음) */
+/*}
+
+
+/* =========================================
+   로딩 화면 전용 스타일
+   ========================================= */
+
+/* 배경 화면 */
+#fake-loading-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    color: white;
+    z-index: 9999;
+    
+    /* 정중앙 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-table, th, tr, td {
-    border: 1px black solid;
-    border-collapse: collapse;
+/* 숨김 처리 */
+.hidden {
+    display: none !important;
+}
+
+/* 내용물 묶음 */
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 비디오 스타일 */
+#loading-image {
+    width: 250px;
+    height: auto;
+    margin: 0 auto 20px auto;
+    border-radius: 10px;
+    display: block;
+}
+
+/* 로딩바 테두리 */
+.progress-bar-border {
     width: 300px;
     height: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #333;
+    overflow: hidden;
+    margin: 10px auto; /* 가운데 정렬 */
 }
 
-@media screen and (max-width: 704px) {
-    
+/* 게이지 막대 */
+#progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #00ff00;
+    transition: width 3.0s ease-in-out;
 }
